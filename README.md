@@ -24,7 +24,7 @@ CalculatorApp is a cross-platform calculator application built with React Native
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/CalculatorApp.git
+   git clone https://github.com/mrokonuzzaman040/CalculatorApp.git
    cd CalculatorApp
    ```
 
