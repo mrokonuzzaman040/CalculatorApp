@@ -1,50 +1,176 @@
-# Welcome to your Expo app 👋
+# CalculatorApp
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+CalculatorApp is a cross-platform calculator application built with React Native and Expo. It features a modern glass (blur) UI, supports basic arithmetic as well as advanced functions (sin, cos, tan, √, exponentiation, and more), and includes a backspace functionality for ease of use.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Arithmetic Operations:** Addition, subtraction, multiplication, and division.
+- **Advanced Functions:** Supports trigonometric functions, square roots, exponentiation, and parenthetical grouping.
+- **Backspace Support:** Easily remove the last entered character.
+- **Modern UI:** Uses Expo's BlurView to achieve a sleek glass (blur) effect.
+- **Cross-Platform:** Works on both Android and iOS.
+- **Customizable Icon:** Easily update the app icon via the configuration file.
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (version 14 or higher recommended)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+- [Expo CLI](https://docs.expo.dev/workflow/expo-cli/) (the local version is recommended)
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/CalculatorApp.git
+   cd CalculatorApp
+   ```
+
+2. **Install dependencies:**
 
    ```bash
    npm install
    ```
 
-2. Start the app
+   or if using Yarn:
 
    ```bash
-    npx expo start
+   yarn install
    ```
 
-In the output, you'll find options to open the app in a
+### Running in Development
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Start the Expo development server with:
 
 ```bash
-npm run reset-project
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- **For Android:** Use the Expo Go app on your Android device or run an Android emulator.
+- **For iOS:** Use the Expo Go app on your iOS device or run the iOS simulator (macOS only).
 
-## Learn more
+## Building the App
 
-To learn more about developing your project with Expo, look at the following resources:
+This project uses [Expo Application Services (EAS Build)](https://docs.expo.dev/build/introduction/) for production builds.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Setup EAS Build
 
-## Join the community
+1. **Install EAS CLI (if not already installed):**
 
-Join our community of developers creating universal apps.
+   ```bash
+   npm install -g eas-cli
+   ```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+2. **Configure your project:**
+
+   Run the following command in your project directory:
+
+   ```bash
+   npx eas build:configure
+   ```
+
+### Building an APK (Android)
+
+The provided `eas.json` is set up to build an APK artifact for both development and production. To build an APK, run:
+
+```bash
+npx eas build --platform android --profile production
+```
+
+When the build completes, you’ll receive a download link for your APK file.
+
+### Building for iOS
+
+To build an iOS IPA, run:
+
+```bash
+npx eas build --platform ios --profile production
+```
+
+> **Note:** iOS builds require you to have the necessary certificates and may require a Mac for testing with the simulator.
+
+## EAS Configuration (`eas.json`)
+
+Here's an example of the `eas.json` configuration used for this project:
+
+```json
+{
+  "cli": {
+    "version": ">= 14.7.1",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
+```
+
+This configuration ensures that both development and production builds generate APK files for Android.
+
+## Changing the Application Icon
+
+To update the application icon:
+
+1. **Prepare your icon image:**  
+   Create a 1024x1024 PNG (or similar) image for your icon.
+
+2. **Place the image in your project:**  
+   Save the image (e.g., `new-icon.png`) in an `assets` folder in your project's root directory.
+
+3. **Update the `app.json`:**  
+   Open `app.json` and set the `icon` property under the `"expo"` key:
+
+   ```json
+   {
+     "expo": {
+       "name": "CalculatorApp",
+       "slug": "calculator-app",
+       "icon": "./assets/new-icon.png",
+       // ... other configuration options
+     }
+   }
+   ```
+
+4. **Rebuild your app:**  
+   Restart your development server or run a new production build to see the updated icon.
+
+## Author
+
+**Rokon**  
+Software Engineer with expertise in JavaScript, TypeScript (React and Next), and Python.
+
+## Contributing
+
+Contributions are welcome! If you have suggestions or improvements, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [Expo](https://expo.dev/)
+- [React Native](https://reactnative.dev/)
+- [mathjs](https://mathjs.org/)
+- [expo-blur](https://docs.expo.dev/versions/latest/sdk/blur-view/)
+- Thanks to all contributors and the open-source community for their support!
